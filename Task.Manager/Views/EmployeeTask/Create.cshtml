@@ -1,0 +1,72 @@
+﻿@model TaskManager.Entity.Models.EmployeeTask
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>EmployeeTask</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">                
+                <input type="hidden" asp-for="TaskId" class="form-control" value="0" />
+                <span asp-validation-for="TaskId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskName" class="control-label"></label>
+                <input asp-for="TaskName" class="form-control" />
+                <span asp-validation-for="TaskName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <select 
+                    asp-for="ProjectId" class="form-control"
+                    asp-items="@Model.ProjectList"></select>
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectTypeId" class="control-label"></label>
+                <select 
+                    asp-for="ProjectTypeId" class="form-control"
+                    asp-items="@Model.ProjectTypeList"></select>
+                <span asp-validation-for="ProjectTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstimatedTime" class="control-label"></label>
+                <input asp-for="EstimatedTime" class="form-control" />
+                <span asp-validation-for="EstimatedTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompletionTime" class="control-label"></label>
+                <input asp-for="CompletionTime" class="form-control" />
+                <span asp-validation-for="CompletionTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusId" class="control-label"></label>
+                <select 
+                    asp-for="StatusId" class="form-control" 
+                    asp-items="@Model.StatusList"></select>
+                <span asp-validation-for="StatusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssignedTo" class="control-label"></label>
+                <select 
+                    asp-for="AssignedTo" class="form-control"
+                    asp-items="@Model.UsersList"></select>
+                <span asp-validation-for="AssignedTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

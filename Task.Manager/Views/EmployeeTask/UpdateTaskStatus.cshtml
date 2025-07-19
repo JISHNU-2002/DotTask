@@ -1,0 +1,57 @@
+﻿@model TaskManager.Entity.Models.EmployeeTask
+
+@{
+    ViewData["Title"] = "UpdateTaskStatus";
+}
+
+<h1>UpdateTaskStatus</h1>
+
+<h4>EmployeeTask</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateTaskStatus" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TaskId" />
+            <div class="form-group">
+                <label asp-for="TaskName" class="control-label"></label>
+                <input asp-for="TaskName" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <input asp-for="ProjectId" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectTypeId" class="control-label"></label>
+                <input asp-for="ProjectTypeId" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="EstimatedTime" class="control-label"></label>
+                <input asp-for="EstimatedTime" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="CompletionTime" class="control-label"></label>
+                <input asp-for="CompletionTime" class="form-control" />
+                <span asp-validation-for="CompletionTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusId" class="control-label"></label>
+                <select asp-for="StatusId" class="form-control"
+                        asp-items="@Model.StatusList"></select>
+                <span asp-validation-for="StatusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssignedTo" class="control-label"></label>
+                <input asp-for="AssignedTo" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,108 @@
+﻿@model IEnumerable<TaskManager.Entity.ViewModels.EmployeeTaskViewModel>
+
+@{
+    ViewData["Title"] = "Tasks";
+}
+
+<h1>Tasks</h1>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            @if(!User.IsInRole("Employee"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+            }
+            <th>
+                @Html.DisplayNameFor(model => model.TaskId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstimatedTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompletionTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusName)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (!User.IsInRole("Employee"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                }                
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectTypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstimatedTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompletionTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusName)
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.TaskId" class="btn btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.TaskId" class="btn btn-danger">Delete</a>
+                        <a asp-action="Details" asp-route-id="@item.TaskId" class="btn btn-info">Details</a>
+                    }
+                    else
+                    {
+                        <a asp-action="UpdateTaskStatus" asp-route-id="@item.TaskId" class="btn btn-secondary">Update</a>
+                        <a asp-action="Details" asp-route-id="@item.TaskId" class="btn btn-info">Details</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+{
+    <div>
+        <a asp-action="Create" class="btn btn-success">Add</a>
+    </div>
+}

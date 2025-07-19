@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Menu> 
+
+<ul class="navbar-nav flex-grow-1">
+    @foreach(var item in Model)
+    {
+        @if(!User.IsInRole("Admin") && item.MenuName != "Employees")
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="@item.ControllerName" asp-action="@item.ActionName">@item.MenuName</a>
+            </li>
+        }
+        else if(User.IsInRole("Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="@item.ControllerName" asp-action="@item.ActionName">@item.MenuName</a>
+            </li>
+        }
+    }
+</ul>
+
+@await Html.PartialAsync("_LoginPartial")          

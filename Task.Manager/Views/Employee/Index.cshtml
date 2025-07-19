@@ -1,0 +1,59 @@
+﻿@model IEnumerable<TaskManager.Entity.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employees List";
+}
+
+<h1>Employees List</h1>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAllocated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAllocated)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmpId" class="btn btn-primary">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.EmpId" class="btn btn-info">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.EmpId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-action="Create" class="btn btn-success">Add</a>
+</div>

@@ -1,0 +1,48 @@
+﻿@model AddRemoveRoleViewModel
+
+@{
+    ViewData["Title"] = "AddRemoveRoles";
+}
+
+<h1>AddRemoveRoles</h1>
+
+<form asp-action="AddRemoveRoles" method="post">
+    <input type="hidden" asp-for="UserName" value="" />
+    @* <input type="hidden" asp-for="UserId" value="" /> *@
+    <input type="hidden" name="UserId" asp-for="UserId" />
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AddRemoveRoles.First().RoleId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AddRemoveRoles.First().RoleName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AddRemoveRoles.First().IsSelected)
+                </th>            
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(int i=0; i<Model.AddRemoveRoles.Count; i++) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.AddRemoveRoles[i].RoleId)
+                        <input type="hidden" asp-for="@Model.AddRemoveRoles[i].RoleId" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.AddRemoveRoles[i].RoleName)
+                        <input type="hidden" asp-for="@Model.AddRemoveRoles[i].RoleName" />
+                    </td>
+                    <td>
+                        <input type="checkbox" asp-for="@Model.AddRemoveRoles[i].IsSelected" class="form-check-input" />
+                    </td>   
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="submit" class="btn btn-success" value="Assign Role" />
+</form>
